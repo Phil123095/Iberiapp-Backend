@@ -39,10 +39,10 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Build Docker Image
-        run: sudo docker build -t ${{ env.DOCKER_CONTAINER_NAME }}:release .
         with:
           file: SERVER_Backend/Dockerfile
           context: ./SERVER_Backend
+        run: sudo docker build -t ${{ env.DOCKER_CONTAINER_NAME }}:release .
         #run: docker buildx build --platform=linux/amd64 -t ${{ env.DOCKER_CONTAINER_NAME }}:release .
       - name: Push and Deploy
         run: |
