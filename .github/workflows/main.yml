@@ -43,7 +43,7 @@ jobs:
       - name: Push and Deploy
         run: |
           service_name=${{ env.AWS_LIGHTSAIL_SERVICE_NAME }}
-          docker_env_vars={{"DB_HOST"=${{ secrets.DB_HOST }}, "DB_USER"=${{ secrets.DB_USER }}, "DB_PASS"=${{ secrets.DB_PASS }}, "DB_NAME"=${{ secrets.DB_NAME }}}}
+          docker_env_vars={{"DB_HOST"="${{ secrets.DB_HOST }}", "DB_USER"="${{ secrets.DB_USER }}", "DB_PASS"="${{ secrets.DB_PASS }}", "DB_NAME"="${{ secrets.DB_NAME }}"}}
           aws lightsail push-container-image \
             --region ${{ env.AWS_REGION }} \
             --service-name ${service_name} \
