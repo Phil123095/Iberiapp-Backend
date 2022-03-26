@@ -53,7 +53,7 @@ jobs:
           aws lightsail create-container-service-deployment --service-name ${service_name} --cli-input-json "{
             \"containers\": {
                \"flask\": {
-                  \"image\": \"${image_dame}\",
+                  \"image\": \"${image_name}\",
                   \"environment\": {\"DB_HOST\": \"{{ secrets.DB_HOST }}\", \"DB_USER\": \"{{ secrets.DB_USER }}\",
                               \"DB_PASS\": \"{{ secrets.DB_PASS }}\", \"DB_NAME\": \"{{ secrets.DB_NAME }}\"
                   \"ports\": {
