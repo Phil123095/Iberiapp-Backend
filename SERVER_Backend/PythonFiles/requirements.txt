@@ -1,0 +1,9 @@
+markupsafe==2.0.1
+flask~=1.1.4
+sqlalchemy~=1.4.27
+pandas~=1.4.1
+werkzeug~=1.0.1
+pangres~=4.1
+mysql-connector
+flask_jwt_extended
+flask_cors
