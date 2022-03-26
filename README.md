@@ -13,5 +13,8 @@
   - datahandling.py -> Loads the files, verifies them, and processes the data into two summary tables. 
   - DBmanager.py -> Handles **upserting** data to the Database. Upsert = Update Row if Exists OR Insert
 
+#### .github/workflows
+  - As I said before, I caught a late obsession for CI/CD and decided to build my own deployment script for Lightsail. Pretty cool stuff. Next step is using the serverles framework for Lambda, will save me a ton of time in other projects too.
+
 P.S. Sorry for not writing a more extensive documentation, and for the 0 comments in the code. If you have any questions, feel free to reach out. 
   
