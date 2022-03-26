@@ -30,3 +30,4 @@ def get_data(connection, start_date, end_date, customer_company_group, granulari
         final_data[item] = formatted_data
 
     return final_data
+
