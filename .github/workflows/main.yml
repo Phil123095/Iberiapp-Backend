@@ -50,6 +50,20 @@ jobs:
             --label ${env.DOCKER_CONTAINER_NAME} \
             --image ${env.DOCKER_CONTAINER_NAME}:release
           aws lightsail get-container-images --service-name ${service_name} | jq --raw-output ".containerImages[0].image" > image.txt
-          jq --arg image $(cat image.txt) '.containers.app.image = $image' config.json > config.json
-          jq --arg docker_env_vars ${cat environ.txt} '.containers.app.environment = $docker_env_vars' config.json > container.json
-          aws lightsail create-container-service-deployment --service-name ${service_name} --cli-input-json file://$(pwd)/container.json
+          image_name = $(cat image.txt)
+          aws lightsail create-container-service-deployment --service-name ${service_name} --cli-input-json "{
+            \"containers\": {
+               \"flask\": {
+                  \"image\": \"${image_dame}\",
+                  \"environment\": {\"DB_HOST\": \"{{ secrets.DB_HOST }}\", \"DB_USER\": \"{{ secrets.DB_USER }}\",
+                              \"DB_PASS\": \"{{ secrets.DB_PASS }}\", \"DB_NAME\": \"{{ secrets.DB_NAME }}\"
+                  \"ports\": {
+                     \"3000\": \"HTTP\"
+                  }
+               }
+            },
+            \"publicEndpoint\": {
+               \"containerName\": \"flask\",
+               \"containerPort\": 3000
+            }
+          }"
