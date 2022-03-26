@@ -1,5 +1,7 @@
 # Iberiapp-Backend
 
+[Website Here](https://master.d3une9mtfnw6tc.amplifyapp.com/) - Please either register using your .ie.edu email, or log in using the test credentials: test[at]final.com, password: final
+
 ## Main Modules:
 ### SERVER_Backend (/PythonFiles) - Hosted on AWS Lightsail:
   - api.py -> Flask Backend API. Routes to user registration, user authentication, and data pulling for the dashboard.
