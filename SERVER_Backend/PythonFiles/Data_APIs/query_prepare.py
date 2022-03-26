@@ -139,7 +139,7 @@ def prepare_queries(start_date, end_date, customer_group, granularity):
                 on a.clean_date = b.date
             where {dept_raised_condition} and customer_company_group {cust_condition}
             group by 1, 2
-            order by 1 asc, 3 desc)
+            order by 1 asc, 2 asc)
             select 
                 date_format(agg_date, '%d-%m-%Y') as clean_date, 
                 name,
@@ -166,7 +166,7 @@ def prepare_queries(start_date, end_date, customer_group, granularity):
                 on a.clean_date = b.date
         where {dept_raised_condition} and customer_company_group {cust_condition}
         group by 1, 2
-        order by 1 asc, 3 desc)
+        order by 1 asc, 2 asc)
         select 
             date_format(agg_date, '%d-%m-%Y') as clean_date, 
             name,
