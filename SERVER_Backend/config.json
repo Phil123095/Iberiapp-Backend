@@ -2,6 +2,7 @@
   "containers": {
      "flask": {
         "image": "",
+        "environment": "",
         "ports": {
            "3000": "HTTP"
         }

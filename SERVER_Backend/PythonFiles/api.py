@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = "hello-change-me"
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 jwt = JWTManager(app)
-DB_engine = get_db_connections()
+DB_engine = get_db_connections(local=False)
 CORS(app)
 
 
@@ -30,7 +30,7 @@ def refresh_expiring_jwts(response):
         return response
 
     except (RuntimeError, KeyError):
-        # Case where there is not a valid JWT. Just return the original respone
+        # Case where there is not a valid JWT. Just return the original response
         return response
 
 @app.route("/authenticate-user", methods=["POST"])
@@ -61,20 +61,6 @@ def new_user():
     return result
 
 
-"""
-@app.route("/modify-credentials", methods=["POST"])
-def modify_user():
-    action_inputs = request.json
-    user = User(
-        email=action_inputs['email'],
-        password=action_inputs['password'],
-        new_email=None if KeyError else action_inputs['new_email'],
-        new_password=None if KeyError else action_inputs['new_password']
-    )
-    result = user.modify_credentials()
-    return result
-"""
-
 @app.route("/get-dashboard-data", methods=["POST"])
 @jwt_required()
 def all_dashboard_data():
@@ -84,7 +70,6 @@ def all_dashboard_data():
     end_date = input_params['end_date']
     customer_comp_group = input_params['customer_group']
     granularity = input_params['granularity']
-    print("GRANU", granularity)
     data = get_data(connection=DB_engine, start_date=start_date,
                     end_date=end_date, customer_company_group=customer_comp_group, granularity=granularity)
     data['logged_in_as'] = current_user
