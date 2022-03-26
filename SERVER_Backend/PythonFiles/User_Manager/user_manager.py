@@ -99,5 +99,3 @@ class User:
             else:
                 return auth_result
 
-    def manage_subscriptions(self):
-        pass
