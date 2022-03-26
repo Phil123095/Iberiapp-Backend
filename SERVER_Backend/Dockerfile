@@ -8,7 +8,7 @@ FROM python:3.8-slim
 
 EXPOSE 3000/tcp
 
-COPY PythonFiles/ /app
+COPY PythonFiles/ .
 
 RUN pip install -r requirements.txt
 
