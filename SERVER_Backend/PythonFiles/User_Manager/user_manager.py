@@ -98,4 +98,3 @@ class User:
                     return auth_result
             else:
                 return auth_result
-
