@@ -4,6 +4,7 @@ import dotenv
 
 
 def get_db_connections(local):
+
     if local:
         dotenv.load_dotenv()
 
