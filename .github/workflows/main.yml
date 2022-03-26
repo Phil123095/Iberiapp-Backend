@@ -49,7 +49,9 @@ jobs:
             --label ${{ env.DOCKER_CONTAINER_NAME }} \
             --image ${{ env.DOCKER_CONTAINER_NAME }}
           aws lightsail get-container-images --service-name ${service_name} | jq --raw-output ".containerImages[0].image" > image.txt
-          aws lightsail create-container-service-deployment --service-name ${service_name}  --containers "{
+          aws lightsail create-container-service-deployment \
+             --service-name ${service_name} \
+             --containers "{
              \"flask\": {
                 \"image\": \"$(cat image.txt)\",
                 \"environment\": {
@@ -62,8 +64,5 @@ jobs:
                 }
              }
             }" \
-            -- public-endpoint "{
-               \"containerName\": \"flask\",
-               \"containerPort\": 3000
-            }"
+            --public-endpoint file://$(pwd)/public-endpoint.json
 
