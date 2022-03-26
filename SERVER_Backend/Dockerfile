@@ -1,6 +1,6 @@
 ################################################################
 # IMPORTANT:
-# WHEN BUILDING DOCKER FOR LIGHTSAIL, RUN:
+# WHEN BUILDING DOCKER FOR LIGHTSAIL ON LOCALMACHINE, RUN:
 # docker buildx build --platform=linux/amd64 -t <image-name> .
 ################################################################
 
