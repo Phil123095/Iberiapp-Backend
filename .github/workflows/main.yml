@@ -49,7 +49,7 @@ jobs:
             --label ${env.DOCKER_CONTAINER_NAME} \
             --image ${env.DOCKER_CONTAINER_NAME}:release
           aws lightsail get-container-images --service-name ${service_name} | jq --raw-output ".containerImages[0].image" > image.txt
-          image_name = $(cat image.txt)
+          image_name = ${(cat image.txt)}
           aws lightsail create-container-service-deployment --service-name ${service_name} --cli-input-json "{
             \"containers\": {
                \"flask\": {
