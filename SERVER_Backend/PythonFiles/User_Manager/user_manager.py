@@ -2,6 +2,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class User:
+    # HELLO
     def __init__(self, DB_connection, email, password, new_email=None, new_password=None):
         self.email = email
         self.new_email = new_email if new_email else None
