@@ -7,6 +7,7 @@ except ModuleNotFoundError:
 
 import pandas as pd
 
+
 def get_data(connection, start_date, end_date, customer_company_group, granularity):
     query_dict = query_prep.prepare_queries(start_date=start_date, end_date=end_date, customer_group=customer_company_group, granularity=granularity)
 
