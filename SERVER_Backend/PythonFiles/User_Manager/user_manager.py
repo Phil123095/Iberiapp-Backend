@@ -47,10 +47,14 @@ class User:
             insert into ti_users (email, hashed_password)
             values ('{self.email}', '{generate_password_hash(self.password)}')
             """
+
+        if 'ie.edu' not in self.email or 'iberia.es' not in self.email:
+            return {'RespCode': 200, 'message': 'You are not authorized to register.'}
+
         result = self.check_if_exists()
 
         if result['user_exists']:
-            return {'RespCode': 200, 'message': 'user_already_exists'}
+            return {'RespCode': 200, 'message': 'User already exists, please log in.'}
 
         else:
             query_success = self.__execute_query(query=query, return_data=False)
