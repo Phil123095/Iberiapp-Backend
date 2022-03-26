@@ -14,7 +14,6 @@ jwt = JWTManager(app)
 DB_engine = get_db_connections(local=False)
 CORS(app)
 
-
 @app.after_request
 def refresh_expiring_jwts(response):
     try:
