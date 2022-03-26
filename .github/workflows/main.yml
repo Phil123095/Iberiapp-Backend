@@ -3,10 +3,15 @@ on:
   push:
     paths:
       - 'SERVER_Backend/**'
+defaults:
+  run:
+    working-directory: ./SERVER_Backend
+
 env:
   AWS_REGION: eu-central-1
   AWS_LIGHTSAIL_SERVICE_NAME: iberiapp-final-try
   DOCKER_CONTAINER_NAME: final-backend-iberiapp
+
 jobs:
   deploy:
     name: Build and deploy
@@ -14,9 +19,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Install Docker (hope this works)
-        - run: |
-            sudo apt install docker.io
       - name: Install Utilities
         run: |
           sudo apt-get update
@@ -38,6 +40,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       - name: Build Docker Image
         run: sudo docker build -t ${{ env.DOCKER_CONTAINER_NAME }}:release .
+        with:
+          file: SERVER_Backend/Dockerfile
+          context: ./SERVER_Backend
         #run: docker buildx build --platform=linux/amd64 -t ${{ env.DOCKER_CONTAINER_NAME }}:release .
       - name: Push and Deploy
         run: |
