@@ -7,6 +7,7 @@ def convert(in_dict):
         )
     return new_dict_list
 
+
 def transform_mttr(data):
 
     newdata = data.pivot(index="priority", columns="sla_indicator", values="mttr")
