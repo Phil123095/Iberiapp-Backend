@@ -36,6 +36,7 @@ def refresh_expiring_jwts(response):
 def auth_user():
     action_inputs = request.json
     user = User(
+        DB_connection=DB_engine,
         email=action_inputs['email'],
         password=action_inputs['password']
         )
@@ -53,6 +54,7 @@ def auth_user():
 def new_user():
     action_inputs = request.json
     user = User(
+        DB_connection=DB_engine,
         email=action_inputs['email'],
         password=action_inputs['password']
     )

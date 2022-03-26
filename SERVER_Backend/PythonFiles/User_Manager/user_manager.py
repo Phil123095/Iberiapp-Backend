@@ -1,30 +1,13 @@
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy import create_engine, engine
-
-def get_db_connections():
-    engine_final = create_engine(
-        # Equivalent URL:
-        # mysql+pymysql://<db_user>:<db_pass>@<db_host>:<db_port>/<db_name>
-        engine.url.URL.create(
-            drivername="mysql+mysqlconnector",
-            username='admin',  # e.g. "my-database-user"
-            password='blockchaintest1',  # e.g. "my-database-password"
-            host='blockchain-db.c1gc1t7hjfvr.eu-central-1.rds.amazonaws.com',  # e.g. "127.0.0.1"
-            port=3306,  # e.g. 3306
-            database='TI_database'  # e.g. "my-database-name",
-        )
-    )
-
-    return engine_final
 
 class User:
-    def __init__(self, email, password, new_email=None, new_password=None):
+    def __init__(self, DB_connection, email, password, new_email=None, new_password=None):
         self.email = email
         self.new_email = new_email if new_email else None
         self.password = password
         self.new_password = new_password if new_password else None
 
-        self.engine = get_db_connections()
+        self.engine = DB_connection
 
     def __execute_query(self, query, return_data):
         """
