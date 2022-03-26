@@ -65,5 +65,8 @@ jobs:
                 }
              }
             }" \
-            --public-endpoint file://$(pwd)/public-endpoint.json
+            --public-endpoint "{
+              \"containerName\": \"flask\",
+              \"containerPort\": 3000
+            }"
 
