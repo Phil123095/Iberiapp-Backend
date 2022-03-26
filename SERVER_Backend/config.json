@@ -1,8 +1,7 @@
 {
-  "serviceName": "iberiapp-final-try",
   "containers": {
      "flask": {
-        "image": ":iberiapp-final-try.final-backend-iberiapp.7",
+        "image": "",
         "ports": {
            "3000": "HTTP"
         }
