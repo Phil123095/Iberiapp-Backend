@@ -11,6 +11,7 @@ def get_db_connections(local):
     password = os.environ['DB_PASS']
     db_host = os.environ['DB_HOST']
     df_name = os.environ['DB_NAME']
+
     engine_final = create_engine(
         # Equivalent URL:
         # mysql+pymysql://<db_user>:<db_pass>@<db_host>:<db_port>/<db_name>
