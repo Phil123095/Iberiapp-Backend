@@ -1,5 +1,6 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 
+
 class User:
     def __init__(self, DB_connection, email, password, new_email=None, new_password=None):
         self.email = email
