@@ -24,6 +24,7 @@ def transform_mttr(data):
         'SLA_not_met_vals': [final['SLA not met'][x] for x in data_order]
     }
 
+
 def transform_cause_TS(data):
     pivot_TS = data.pivot(index="clean_date", columns="name", values="total_incidents").fillna(0)
     pivot_TS.reset_index(inplace=True)
