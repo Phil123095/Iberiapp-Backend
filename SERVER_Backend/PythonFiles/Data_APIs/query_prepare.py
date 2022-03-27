@@ -1,9 +1,9 @@
 def create_conditionals(start_date, end_date, customer_group, granularity):
     # Create Conditional Statement for Date Timeframe
     if start_date == end_date:
-        condition = f"a.month_year = '{start_date}'"
-        mttr_condition = f"a.month_year_closed = '{start_date}'"
-        dept_raised_condition = f"a.month_year_opened = '{start_date}'"
+        condition = f"month_year = '{start_date}'"
+        mttr_condition = f"month_year_closed = '{start_date}'"
+        dept_raised_condition = f"month_year_opened = '{start_date}'"
 
     else:
         condition = f"month_year between '{start_date}' and '{end_date}'"
