@@ -23,6 +23,7 @@ jwt = JWTManager(app)
 DB_engine = get_db_connections(local=local)
 CORS(app)
 
+
 @app.after_request
 def refresh_expiring_jwts(response):
     try:
@@ -40,6 +41,7 @@ def refresh_expiring_jwts(response):
     except (RuntimeError, KeyError):
         # Case where there is not a valid JWT. Just return the original response
         return response
+
 
 @app.route("/authenticate-user", methods=["POST"])
 def auth_user():
