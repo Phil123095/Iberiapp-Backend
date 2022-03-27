@@ -1,6 +1,8 @@
 *.env
 *.html
 
+api_testing.py
+
 # OS generated files #
 ######################
 .idea/

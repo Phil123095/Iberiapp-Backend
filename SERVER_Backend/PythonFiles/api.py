@@ -1,3 +1,5 @@
+import os
+import dotenv
 from flask import Flask, request
 import json
 from flask_cors import CORS
@@ -5,13 +7,20 @@ from User_Manager.user_manager import User
 from Data_APIs.data_retriever_clean import get_data
 from getconnection import get_db_connections
 from datetime import datetime, timedelta, timezone
-from flask_jwt_extended import create_access_token,get_jwt,get_jwt_identity, jwt_required, JWTManager
+from flask_jwt_extended import create_access_token, get_jwt, get_jwt_identity, jwt_required, JWTManager
+
+local = True
+
+if local:
+    dotenv.load_dotenv()
+
+JWT_SECRET = os.environ['JWT_SECRET']
 
 app = Flask(__name__)
-app.config['JWT_SECRET_KEY'] = "hello-change-me"
+app.config['JWT_SECRET_KEY'] = JWT_SECRET
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=1)
 jwt = JWTManager(app)
-DB_engine = get_db_connections(local=False)
+DB_engine = get_db_connections(local=local)
 CORS(app)
 
 @app.after_request

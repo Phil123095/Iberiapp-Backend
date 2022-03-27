@@ -11,12 +11,16 @@ def convert(in_dict):
 def transform_mttr(data):
 
     newdata = data.pivot(index="priority", columns="sla_indicator", values="mttr")
-
     final = newdata.to_dict()
     data_order = ['Critical', 'High', 'Medium', 'Low']
 
     if 'Critical' not in final['SLA not met']:
         final['SLA not met']['Critical'] = 0
+
+    elif str(final['SLA not met']['Critical']) == 'nan':
+        final['SLA not met']['Critical'] = 0
+
+
 
     return {
         'labels': data_order,

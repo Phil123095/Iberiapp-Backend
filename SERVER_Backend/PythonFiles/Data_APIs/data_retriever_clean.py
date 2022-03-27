@@ -19,6 +19,8 @@ def get_data(connection, start_date, end_date, customer_company_group, granulari
             formatted_data = dataclean.convert(pd.read_sql(query, connection).to_dict(orient='records')[0])
 
         if item in ['all_raised_data', 'raised_TS_prio', 'mttr_perc']:
+            if item == 'mttr_perc':
+                print(pd.read_sql(query, connection))
             formatted_data = pd.read_sql(query, connection).to_dict(orient='list')
 
         if item == 'mttr_data':

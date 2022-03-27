@@ -91,7 +91,7 @@ def prepare_queries(start_date, end_date, customer_group, granularity):
                     when sla_met = 0 then 'SLA not met'
                     when sla_met = 1 then 'SLA met'
                 end as sla_indicator,
-                mttr 
+                case when mttr is null then 0 else mttr end as mttr 
             from final 
             order by priority_rank asc"""
 
@@ -112,7 +112,10 @@ def prepare_queries(start_date, end_date, customer_group, granularity):
                     when a.priority = 'Baja' then 'Low'
                 end as priority,
                 100*(sum(case when sla_met = 1 then 1 end)/b.total_incidents) as SLA_met_vals,
-                100*(sum(case when sla_met = 0 then 1 end)/b.total_incidents) as SLA_not_met_vals
+                case 
+                    when 100*(sum(case when sla_met = 0 then 1 end)/b.total_incidents) is null then 0
+                    else 100*(sum(case when sla_met = 0 then 1 end)/b.total_incidents)
+                end as SLA_not_met_vals
             from summary_all_incidents as a 
             left join start as b
                 on a.priority = b.priority 
